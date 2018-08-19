@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row pt-3">
+    <div class="col-sm-12">
+      <h2 class="text-center mb-4">Google InputTool Project using API</h2>
+      <mat-divider></mat-divider>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-sm-6">
+      <form #translator="ngForm" (ngSubmit)="send()">
+          <mat-form-field>
+          <mat-select #key placeholder="Select Language" (selectionChange)="check(key.value)">
+              <mat-option  *ngFor="let key of keyOptions" [value]="key.value">
+                {{key.showcase}}
+              </mat-option>
+            </mat-select>
+            </mat-form-field>
+        <mat-form-field>
+          <textarea id="textSend" name="Hindi" placeholder="Text input in English" matInput minlength="5" rows="10" required [(ngModel)]="googleObj.text"></textarea>
+        </mat-form-field>
+        <div class="d-flex justify-content-between">
+          <button type="button" mat-raised-button color="accent" (click)="googleObj.text = ''; result = ''">Erase</button>
+          <button type="submit" id="btnSubmit" mat-raised-button color="primary" [disabled]="!translator.valid">Translate</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-6">
+      <label for="english" class="font-weight-bold">Result:</label>
+      <p>{{result}}</p>
+    </div>
+  </div>
+</div>
